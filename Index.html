@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Special Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  overflow: hidden;
+  background: #fff;
+}
+
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+}
+
+.page.active {
+  display: flex;
+}
+
+h1 {
+  font-size: 1.7rem;
+  margin-bottom: 20px;
+  white-space: pre-line;
+}
+
+input {
+  padding: 12px;
+  font-size: 1rem;
+  width: 250px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  background: #ff8fab;
+  color: white;
+  cursor: pointer;
+  margin: 10px;
+}
+
+button:hover {
+  background: #ff5c8a;
+}
+
+/* 🥛 Floating Milk Emoji */
+.milk {
+  position: absolute;
+  font-size: 2rem;
+  animation: float 10s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(110vh);
+  }
+  to {
+    transform: translateY(-10vh);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <h1>WHAT IS YOUR NAME</h1>
+  <input type="text" id="username" placeholder="Type your name">
+  <button onclick="goToPage(2)">NEXT</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <h1>THEN WHO IS പാൽ</h1>
+  <button onclick="showFinal()">ITS ME</button>
+  <button onclick="goToPage(3)">ITS NOT ME</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+  <h1>I KNOW ITS YOU</h1>
+  <button onclick="showFinal()">I ACCEPT IT</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+  <h1 id="finalMessage"></h1>
+</div>
+
+<script>
+function goToPage(num) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page' + num).classList.add('active');
+}
+
+function showFinal() {
+  const name = document.getElementById("username").value || "Paalu";
+
+  document.getElementById("finalMessage").innerText =
+`Hey mrs paalu or nandhana,
+thank you parayunnavan kurangan ahn paranjirunn ennalum
+thank you enne koode ellathin ninnathin
+enne Happy akiyathin
+and you made me Happy
+and i wish you always Happy and be happy
+appo bey and thank you 🫂🩵`;
+
+  goToPage(4);
+}
+
+/* Floating 🥛 emojis */
+for (let i = 0; i < 25; i++) {
+  let milk = document.createElement("div");
+  milk.className = "milk";
+  milk.innerText = "🥛";
+  milk.style.left = Math.random() * 100 + "vw";
+  milk.style.animationDuration = (5 + Math.random() * 10) + "s";
+  milk.style.fontSize = (20 + Math.random() * 30) + "px";
+  document.body.appendChild(milk);
+}
+</script>
+
+</body>
+</html>
